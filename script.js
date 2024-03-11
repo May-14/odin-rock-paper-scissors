@@ -12,23 +12,37 @@ function getComputerChoice() {
 
 function playRound(playerChoice, computerChoice) {
     if (playerChoice === computerChoice) {
-        return `Tie. You both chose ${computerChoice}.`
+        return "Tie";
     } else if (((playerChoice === "Rock") & computerChoice === "Paper") || ((playerChoice === "Paper") & computerChoice === "Scissors") || ((playerChoice === "Scissors") & computerChoice === "Rock")) {
-        return `You lose! ${computerChoice} beats ${playerChoice.toLowerCase()}.`
+        return "Lose";
     } else {
-        return `You win! ${playerChoice} beats ${computerChoice.toLowerCase()}.`
+        return "Win";
     }
 }
 
 function playGame() {
     for (let i = 0; i < 5; i++){
-        alert(i)
+        let playerChoice = prompt("Enter something");
+playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCase()
+        let computerChoice = getComputerChoice();
+        let roundResult = playRound(playerChoice, computerChoice)
+        switch (roundResult) {
+            case "Win":
+                console.log(`You win round number ${i + 1}! ${playerChoice} beats ${computerChoice.toLowerCase()}`);
+                break;
+            case "Lose":
+                console.log(`You lose round number ${i + 1}! ${computerChoice} beats ${playerChoice.toLowerCase()}`);
+                break;
+            case "Tie":
+                console.log(`Round ${i + 1} ends in tie! You both chose ${computerChoice}`);
+                break;
+        }
     }
 }
 
-playGame()
-// let playerChoice = prompt("Enter something");
-// playerChoice = playerChoice[0].toUpperCase() + playerChoice.slice(1).toLowerCase()
-// let computerChoice = getComputerChoice();
-// alert(computerChoice)
-// alert(playRound(playerChoice, computerChoice))
+// 
+let playerChoice = prompt("Enter something");
+playerChoice = playerChoice[0].toUpperCase() + playerChoice.slice(1).toLowerCase()
+let computerChoice = getComputerChoice();
+alert(computerChoice)
+alert(playRound(playerChoice, computerChoice))
