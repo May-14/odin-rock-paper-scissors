@@ -21,6 +21,8 @@ function playRound(playerChoice, computerChoice) {
 }
 
 function playGame() {
+    let playerRoundScore = 0;
+    let computerRoundScore = 0;
     for (let i = 0; i < 5; i++){
         let playerChoice = prompt("Enter something");
 playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCase()
@@ -29,16 +31,22 @@ playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCas
         switch (roundResult) {
             case "Win":
                 alert(`You win round number ${i + 1}! ${playerChoice} beats ${computerChoice.toLowerCase()}`);
+                playerRoundScore += 1;
                 break;
             case "Lose":
                 alert(`You lose round number ${i + 1}! ${computerChoice} beats ${playerChoice.toLowerCase()}`);
+                computerRoundScore += 1;
                 break;
             case "Tie":
                 alert(`Round ${i + 1} ends in tie! You both chose ${computerChoice}`);
                 break;
         }
     }
+    if (playerRoundScore === computerRoundScore) {
+        return(`You tied with a score of ${playerRoundScore}.`);
+    } else {
+        return((`You ${computerRoundScore > playerRoundScore ? "lost" : "won"} with a score of ${playerRoundScore}-${computerRoundScore}.`));
+    }
 }
 
-// 
-playGame()
+alert(playGame())
