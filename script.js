@@ -15,6 +15,8 @@ function playRound(playerChoice, computerChoice) {
         return "Tie";
     } else if (((playerChoice === "Rock") & computerChoice === "Paper") || ((playerChoice === "Paper") & computerChoice === "Scissors") || ((playerChoice === "Scissors") & computerChoice === "Rock")) {
         return "Lose";
+    } else if (playerChoice !== "Rock" && playerChoice !== "Scissors" && playerChoice !== "Paper") {
+        alert("Please enter a valid input. Rock, paper or scissors. (Not case sensitive)")
     } else {
         return "Win";
     }
@@ -25,9 +27,9 @@ function playGame() {
     let computerRoundScore = 0;
     for (let i = 0; i < 5; i++){
         let playerChoice = prompt("Enter something");
-playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCase()
+        playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCase()
         let computerChoice = getComputerChoice();
-        let roundResult = playRound(playerChoice, computerChoice)
+        let roundResult = playRound(playerChoice, computerChoice);
         switch (roundResult) {
             case "Win":
                 alert(`You win round number ${i + 1}! ${playerChoice} beats ${computerChoice.toLowerCase()}`);
@@ -40,6 +42,8 @@ playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCas
             case "Tie":
                 alert(`Round ${i + 1} ends in tie! You both chose ${computerChoice}`);
                 break;
+            default:
+                i -= 1;
         }
     }
     if (playerRoundScore === computerRoundScore) {
