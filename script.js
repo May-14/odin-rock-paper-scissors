@@ -28,21 +28,17 @@ playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCas
         let roundResult = playRound(playerChoice, computerChoice)
         switch (roundResult) {
             case "Win":
-                console.log(`You win round number ${i + 1}! ${playerChoice} beats ${computerChoice.toLowerCase()}`);
+                alert(`You win round number ${i + 1}! ${playerChoice} beats ${computerChoice.toLowerCase()}`);
                 break;
             case "Lose":
-                console.log(`You lose round number ${i + 1}! ${computerChoice} beats ${playerChoice.toLowerCase()}`);
+                alert(`You lose round number ${i + 1}! ${computerChoice} beats ${playerChoice.toLowerCase()}`);
                 break;
             case "Tie":
-                console.log(`Round ${i + 1} ends in tie! You both chose ${computerChoice}`);
+                alert(`Round ${i + 1} ends in tie! You both chose ${computerChoice}`);
                 break;
         }
     }
 }
 
 // 
-let playerChoice = prompt("Enter something");
-playerChoice = playerChoice[0].toUpperCase() + playerChoice.slice(1).toLowerCase()
-let computerChoice = getComputerChoice();
-alert(computerChoice)
-alert(playRound(playerChoice, computerChoice))
+playGame()
