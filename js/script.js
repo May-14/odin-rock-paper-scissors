@@ -12,7 +12,7 @@ function getComputerChoice() {
     }
 }
 
-function playRound(roundNumber = 0, playerChoice) {
+function playRound(playerChoice, roundNumber = 0) {
     playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCase()
     let computerChoice = getComputerChoice();
     let roundResult = "";
@@ -57,5 +57,7 @@ function playGame() {
 
 let buttons = document.querySelectorAll("button");
 buttons.forEach(button => {
-    button.addEventListener("click", playRound(playerChoice = button.textContent))
+    button.addEventListener("click", () => {
+        playRound(button.textContent)}
+        )
 })
