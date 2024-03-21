@@ -1,5 +1,8 @@
 let playerRoundScore = 0;
 let computerRoundScore = 0;
+let finalMessage = document.querySelector(".choices span")
+let buttons = document.querySelectorAll(".choices button");
+let startNewGameButton = document.querySelector(".start-new-game");
 let playerScoreUI = document.querySelector(".player-score")
 let cpuScoreUI = document.querySelector(".cpu-score")
 let playerChoice = "Undefined";
@@ -20,6 +23,7 @@ function getComputerChoice() {
 }
 
 function playRound(roundNumber = 1) {
+    confirmButton.style.visibility = "hidden";
     cpuWonOrLost.style.visibility = "visible";
     playerWonOrLost.style.visibility = "visible";
     playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCase()
@@ -57,37 +61,23 @@ function playRound(roundNumber = 1) {
         playerScoreUI.textContent = playerRoundScore
     }
     if (playerRoundScore === 5 || computerRoundScore === 5) {
-        alert("You won!");
-        computerRoundScore = 0;
-        playerRoundScore = 0;
-        playerScoreUI.textContent = 0;
-        cpuScoreUI.textContent = 0;
-        computerMove.textContent = "?"
-        playerMove.textContent = "?"
-        cpuWonOrLost.style.visibility = "hidden";
-        playerWonOrLost.style.visibility = "hidden";
+        startNewGameButton.style.display = "block";
+        buttons.forEach(button => {
+            button.style.display = "none";
+        })
+        confirmButton.style.display = "none";
+        finalMessage.style.display = "block"
+        finalMessage.textContent = playerRoundScore === 5 ? `You win with a score of ${playerRoundScore} against ${computerRoundScore}.` : `The computer wins with a score of ${computerRoundScore} against ${playerRoundScore}.`; 
     }
 }
 
-function playGame() {
-    playerRoundScore = 0;
-    computerRoundScore = 0;
-    for (let i = 0; i < 5; i++){
-        playRound(i)
-    }
-    if (playerRoundScore === computerRoundScore) {
-        return(`You tied with a score of ${playerRoundScore}.`);
-    } else {
-        return((`You ${computerRoundScore > playerRoundScore ? "lost" : "won"} with a score of ${playerRoundScore}-${computerRoundScore}.`));
-    }
-}
 
-let buttons = document.querySelectorAll(".choices button");
 buttons.forEach(button => {
     button.addEventListener("click", () => {
         computerMove.textContent = "?"
         cpuWonOrLost.style.visibility = "hidden";
         playerWonOrLost.style.visibility = "hidden";
+        confirmButton.style.visibility = "visible";
         playerChoice = button.textContent;
         if (button.textContent === "Scissors") {
             playerMove.textContent = "✂️";
@@ -102,3 +92,20 @@ buttons.forEach(button => {
 
 let confirmButton = document.querySelector("button.confirm");
 confirmButton.addEventListener("click", playRound);
+startNewGameButton.addEventListener("click", () => {
+    computerRoundScore = 0;
+    playerRoundScore = 0;
+    playerScoreUI.textContent = 0;
+    cpuScoreUI.textContent = 0;
+    computerMove.textContent = "?"
+    playerMove.textContent = "?"
+    cpuWonOrLost.style.visibility = "hidden";
+    playerWonOrLost.style.visibility = "hidden";
+    startNewGameButton.style.display = "none"
+    buttons.forEach(button => {
+        button.style.display = "inline";
+    })
+    confirmButton.style.display = "block";
+    finalMessage.style.display = "none";
+    confirmButton.style.visibility = "hidden";
+})

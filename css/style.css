@@ -20,11 +20,16 @@ div.choices {
     width: 60px;
 }
 
-.confirm {
+.confirm, .start-new-game {
     display: block;
     width: fit-content;
     margin: 0 auto;
 }
+
+.confirm {
+    visibility: hidden;
+}
+
 .content {
     display: flex;
     align-items: center;
@@ -101,4 +106,13 @@ h1 {
 
 nav span:hover {
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.choices span {
+    text-align: center;
+    font-size: 50px;
 }
