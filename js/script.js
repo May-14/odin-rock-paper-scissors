@@ -1,5 +1,10 @@
 let playerRoundScore = 0;
 let computerRoundScore = 0;
+let playerScoreUI = document.querySelector(".player-score")
+let cpuScoreUI = document.querySelector(".cpu-score")
+let playerChoice = "Undefined";
+let playerMove = document.querySelector(".player-choice")
+let computerMove = document.querySelector(".computer-choice")
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     switch (randomNumber) {
@@ -12,7 +17,7 @@ function getComputerChoice() {
     }
 }
 
-function playRound(playerChoice, roundNumber = 0) {
+function playRound(roundNumber = 1) {
     playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCase()
     let computerChoice = getComputerChoice();
     let roundResult = "";
@@ -20,25 +25,14 @@ function playRound(playerChoice, roundNumber = 0) {
         roundResult = "Tie";
     } else if (((playerChoice === "Rock") & computerChoice === "Paper") || ((playerChoice === "Paper") & computerChoice === "Scissors") || ((playerChoice === "Scissors") & computerChoice === "Rock")) {
         roundResult = "Lose";
+        computerRoundScore += 1;
+        cpuScoreUI.textContent = computerRoundScore
     } else if (playerChoice !== "Rock" && playerChoice !== "Scissors" && playerChoice !== "Paper") {
         alert("Please enter a valid input. Rock, paper or scissors. (Not case sensitive)")
     } else {
         roundResult = "Win";
-    }
-    switch (roundResult) {
-        case "Win":
-            alert(`You win round number ${roundNumber + 1}! ${playerChoice} beats ${computerChoice.toLowerCase()}`);
-            playerRoundScore += 1;
-            break;
-        case "Lose":
-            alert(`You lose round number ${roundNumber + 1}! ${computerChoice} beats ${playerChoice.toLowerCase()}`);
-            computerRoundScore += 1;
-            break;
-        case "Tie":
-            alert(`Round ${roundNumber + 1} ends in tie! You both chose ${computerChoice}`);
-            break;
-        default:
-            i -= 1;
+        playerRoundScore += 1;
+        playerScoreUI.textContent = playerRoundScore
     }
 }
 
@@ -55,10 +49,10 @@ function playGame() {
     }
 }
 
-let playerMove = document.querySelector(".player-choice")
 let buttons = document.querySelectorAll(".choices button");
 buttons.forEach(button => {
     button.addEventListener("click", () => {
+        playerChoice = button.textContent;
         if (button.textContent === "Scissors") {
             playerMove.textContent = "✂️";
         } else if (button.textContent === "Paper") {
@@ -69,3 +63,6 @@ buttons.forEach(button => {
         }
     })
 })
+
+let confirmButton = document.querySelector("button.confirm");
+confirmButton.addEventListener("click", playRound)

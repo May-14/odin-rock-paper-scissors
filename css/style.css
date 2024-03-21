@@ -50,7 +50,7 @@ p {
     margin: 0;
 }
 
-p.score {
+.player-score, .cpu-score {
     font-size: 30px;
 }
 
