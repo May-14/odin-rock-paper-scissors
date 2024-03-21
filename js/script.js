@@ -12,7 +12,7 @@ function getComputerChoice() {
     }
 }
 
-function playRound(roundNumber) {
+function playRound(roundNumber = 0) {
     let playerChoice = prompt("Enter something");
     playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCase()
     let computerChoice = getComputerChoice();
@@ -60,5 +60,5 @@ function playGame() {
     }
 }
 
-alert(playGame())
+playRound()
 
