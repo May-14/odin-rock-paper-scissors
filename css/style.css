@@ -56,4 +56,12 @@ p.score {
 
 .player-choice, .computer-choice {
     font-size: 120px;
+    box-sizing: content-box;
+    width: 140px;
+    text-align: center;
+}
+
+.vs {
+    text-align: center;
+    font-size: 60px;
 }

@@ -55,9 +55,17 @@ function playGame() {
     }
 }
 
-let buttons = document.querySelectorAll("button");
+let playerMove = document.querySelector(".player-choice")
+let buttons = document.querySelectorAll(".choices button");
 buttons.forEach(button => {
     button.addEventListener("click", () => {
-        playRound(button.textContent)}
-        )
+        if (button.textContent === "Scissors") {
+            playerMove.textContent = "✂️";
+        } else if (button.textContent === "Paper") {
+            playerMove.textContent = "📜";
+        }
+        else {
+            playerMove.textContent = "🗿";
+        }
+    })
 })
