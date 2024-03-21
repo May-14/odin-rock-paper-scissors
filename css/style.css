@@ -2,6 +2,9 @@ div.results {
     height: 300px;
     width: 600px;
     background-color: rgba(88, 88, 88, 0.191);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 h1 {
@@ -49,4 +52,8 @@ p {
 
 p.score {
     font-size: 30px;
+}
+
+.player-choice, .computer-choice {
+    font-size: 120px;
 }
