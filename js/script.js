@@ -47,8 +47,6 @@ function playRound(roundNumber = 1) {
         playerWonOrLost.style.color = "red";
         playerWonOrLost.textContent = "Lose";
         cpuScoreUI.textContent = computerRoundScore
-    } else if (playerChoice !== "Rock" && playerChoice !== "Scissors" && playerChoice !== "Paper") {
-        alert("Please enter a valid input. Rock, paper or scissors. (Not case sensitive)")
     } else {
         roundResult = "Win";
         cpuWonOrLost.textContent = "Lose";
@@ -57,6 +55,17 @@ function playRound(roundNumber = 1) {
         playerWonOrLost.style.color = "green";
         playerRoundScore += 1;
         playerScoreUI.textContent = playerRoundScore
+    }
+    if (playerRoundScore === 5 || computerRoundScore === 5) {
+        alert("You won!");
+        computerRoundScore = 0;
+        playerRoundScore = 0;
+        playerScoreUI.textContent = 0;
+        cpuScoreUI.textContent = 0;
+        computerMove.textContent = "?"
+        playerMove.textContent = "?"
+        cpuWonOrLost.style.visibility = "hidden";
+        playerWonOrLost.style.visibility = "hidden";
     }
 }
 
