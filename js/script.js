@@ -12,8 +12,7 @@ function getComputerChoice() {
     }
 }
 
-function playRound(roundNumber = 0) {
-    let playerChoice = prompt("Enter something");
+function playRound(roundNumber = 0, playerChoice) {
     playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCase()
     let computerChoice = getComputerChoice();
     let roundResult = "";
@@ -43,10 +42,6 @@ function playRound(roundNumber = 0) {
     }
 }
 
-let buttons = document.querySelectorAll("button");
-buttons.forEach(button => {
-    button.addEventListener("click", playRound())
-})
 function playGame() {
     playerRoundScore = 0;
     computerRoundScore = 0;
@@ -60,5 +55,7 @@ function playGame() {
     }
 }
 
-playRound()
-
+let buttons = document.querySelectorAll("button");
+buttons.forEach(button => {
+    button.addEventListener("click", playRound(playerChoice = button.textContent))
+})
