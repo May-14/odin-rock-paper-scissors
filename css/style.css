@@ -1,0 +1,18 @@
+div.results {
+    height: 300px;
+    width: 600px;
+    background-color: rgba(88, 88, 88, 0.191);
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+div.choices {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
