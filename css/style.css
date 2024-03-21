@@ -33,6 +33,7 @@ div.choices {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 span {
@@ -44,6 +45,7 @@ span {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
 }
 
 p {
@@ -79,4 +81,27 @@ p {
 .round-winner-cpu, .round-winner-player, .empty-space {
     font-size: 50px;
     visibility: hidden;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 50px;
+    margin: 20px 50px;
+}
+
+nav span {
+    position: absolute;
+    right: 10px;
+    font-size: 35px;
+    color: gray;
+    margin-right: 15px;
+}
+
+nav span:hover {
+    cursor: pointer;
 }
