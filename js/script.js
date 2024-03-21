@@ -5,6 +5,8 @@ let cpuScoreUI = document.querySelector(".cpu-score")
 let playerChoice = "Undefined";
 let playerMove = document.querySelector(".player-choice")
 let computerMove = document.querySelector(".computer-choice")
+let playerWonOrLost = document.querySelector(".round-winner-player");
+let cpuWonOrLost = document.querySelector(".round-winner-cpu");
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     switch (randomNumber) {
@@ -18,19 +20,41 @@ function getComputerChoice() {
 }
 
 function playRound(roundNumber = 1) {
+    cpuWonOrLost.style.visibility = "visible";
+    playerWonOrLost.style.visibility = "visible";
     playerChoice = playerChoice[0].toUpperCase() +  playerChoice.slice(1).toLowerCase()
     let computerChoice = getComputerChoice();
+    if (computerChoice === "Scissors") {
+        computerMove.textContent = "✂️";
+    } else if (computerChoice === "Paper") {
+        computerMove.textContent = "📜";
+    }
+    else {
+        computerMove.textContent = "🗿";
+    }
     let roundResult = "";
     if (playerChoice === computerChoice) {
         roundResult = "Tie";
+        cpuWonOrLost.textContent = "Tie";
+        playerWonOrLost.textContent = "Tie";
+        cpuWonOrLost.style.color = "gray";
+        playerWonOrLost.style.color = "gray";
     } else if (((playerChoice === "Rock") & computerChoice === "Paper") || ((playerChoice === "Paper") & computerChoice === "Scissors") || ((playerChoice === "Scissors") & computerChoice === "Rock")) {
         roundResult = "Lose";
         computerRoundScore += 1;
+        cpuWonOrLost.textContent = "Win";
+        cpuWonOrLost.style.color = "green";
+        playerWonOrLost.style.color = "red";
+        playerWonOrLost.textContent = "Lose";
         cpuScoreUI.textContent = computerRoundScore
     } else if (playerChoice !== "Rock" && playerChoice !== "Scissors" && playerChoice !== "Paper") {
         alert("Please enter a valid input. Rock, paper or scissors. (Not case sensitive)")
     } else {
         roundResult = "Win";
+        cpuWonOrLost.textContent = "Lose";
+        playerWonOrLost.textContent = "Win";
+        cpuWonOrLost.style.color = "red";
+        playerWonOrLost.style.color = "green";
         playerRoundScore += 1;
         playerScoreUI.textContent = playerRoundScore
     }
@@ -52,6 +76,9 @@ function playGame() {
 let buttons = document.querySelectorAll(".choices button");
 buttons.forEach(button => {
     button.addEventListener("click", () => {
+        computerMove.textContent = "?"
+        cpuWonOrLost.style.visibility = "hidden";
+        playerWonOrLost.style.visibility = "hidden";
         playerChoice = button.textContent;
         if (button.textContent === "Scissors") {
             playerMove.textContent = "✂️";
