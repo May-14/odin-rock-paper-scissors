@@ -102,5 +102,3 @@ buttons.forEach(button => {
 
 let confirmButton = document.querySelector("button.confirm");
 confirmButton.addEventListener("click", playRound);
-
-let settingsButton = document.querySelector("nav span");

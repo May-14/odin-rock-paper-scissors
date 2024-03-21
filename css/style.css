@@ -7,10 +7,6 @@ div.results {
     align-items: center;
 }
 
-h1 {
-    text-align: center;
-}
-
 div.choices {
     height: 100px;
     display: flex;
@@ -90,11 +86,12 @@ nav {
 }
 
 h1 {
+    text-align: center;
     font-size: 50px;
     margin: 20px 50px;
 }
 
-nav span {
+.settings-icon {
     position: absolute;
     right: 10px;
     font-size: 35px;
